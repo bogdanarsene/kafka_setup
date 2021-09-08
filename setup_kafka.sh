@@ -14,6 +14,8 @@ sudo tee -a /etc/profile.d/java_home.sh <<< "export JAVA_HOME=$(readlink -f /usr
 sudo chmod +x /etc/profile.d/java_home.sh
 /etc/profile.d/java_home.sh
 
+cd ..
+
 # get Kafka
 wget https://mirror.efect.ro/apache/kafka/$KAFKA_VER/$KAFKA_NAME.tgz
 tar -xzf $KAFKA_NAME.tgz
@@ -23,6 +25,6 @@ cd $KAFKA_NAME
 # Start the ZooKeeper service
 # Note: Soon, ZooKeeper will no longer be required by Apache Kafka.
 nohup bin/zookeeper-server-start.sh config/zookeeper.properties &
-sleep 5
+sleep 10
 # Start the Kafka broker service
 nohup bin/kafka-server-start.sh config/server.properties &
