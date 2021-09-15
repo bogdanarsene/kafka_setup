@@ -1,11 +1,14 @@
 #!/bin/bash
 
-# Install Zookeeper, Kafka on Kubernetes
+echo '###################################################'
+echo 'Install Zookeeper, Kafka on Kubernetes'
 
 KAFKA_VER=2.8.0
 KAFKA_NAME=kafka_2.13-$KAFKA_VER
 
-# install JAVA
+echo '---------------------------------------------------'
+echo 'Install JAVA'
+
 sudo apt update
 sudo apt -y install default-jre
 java -version
@@ -16,7 +19,9 @@ sudo chmod +x /etc/profile.d/java_home.sh
 
 cd ..
 
-# get Kafka
+echo '---------------------------------------------------'
+echo 'Get Kafka'
+
 wget https://mirror.efect.ro/apache/kafka/$KAFKA_VER/$KAFKA_NAME.tgz
 tar -xzf $KAFKA_NAME.tgz
 cd $KAFKA_NAME
@@ -28,3 +33,7 @@ nohup bin/zookeeper-server-start.sh config/zookeeper.properties &
 sleep 10
 # Start the Kafka broker service
 nohup bin/kafka-server-start.sh config/server.properties &
+
+echo '---------------------------------------------------'
+echo 'Kafka Setup DONE'
+echo '###################################################'
